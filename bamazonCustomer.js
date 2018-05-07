@@ -85,12 +85,13 @@ function purchase() {
             var itemName = quantityCheck[0].product_name;
             var itemPrice = quantityCheck[0].price;
             var total = itemQuantity * itemPrice;
-            if (itemsRemaining <= 0) {
-                console.log("Sorry this item is currently out of stock please try again later!");
-            } else {
+            if (itemsRemaining >= itemQuantity){
                 console.log(`\nYour cart includes: ${itemQuantity} x ${itemName} \nYour Total: $ ${total}`);
                 checkout();
-            }
+            } else if (itemsRemaining < itemQuantity){
+                console.log(`Sorry this item is low in stock, there are ${itemsRemaining} of this item remaining.`);
+                continueShopping();
+            } 
         })
     })
 }
